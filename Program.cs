@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddServerSideBlazor(options =>
 {
-    options.RootComponents.RegisterAsCustomElement<Counter>("my-blazor-counter");
+    options.RootComponents.RegisterCustomElement<Counter>("blazor-counter");
 });
 
 var app = builder.Build();
@@ -24,12 +24,11 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
-
 app.MapBlazorHub();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller}/{action=Index}/{id?}");
 
-app.MapFallbackToFile("index.html"); ;
+app.MapFallbackToFile("index.html");
 
 app.Run();
